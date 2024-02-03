@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Мои услуги/товары</h2>
+{% if service_list %}
+<ul>
+  {% for service in service_list %}
+      <div class="card" style="width: 18rem;">
+        <img src="/media/{{ service.service_img }}" class="card-img-top" alt="Изображение">
+        <div class="card-body">
+          <p>Название: {{ service.service_name }}</p>
+          <p>Описание: {{ service.description_service }} </p>
+        </div>
+      </div>
+  {% endfor %}
+</ul>
+{% else %}
+  <p>У вас нет услуг/товаров</p>
+{% endif %}
+{% endblock %}

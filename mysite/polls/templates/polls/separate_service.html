@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<h2>Найти товар</h2>
+<form class="form form-search" method="get" action="{% url 'polls:search' %}">
+    <input type="search" placeholder="Поиск" name="query">
+    <button class="table-input" type="submit">Поиск</button>
+</form>
+<h2>Услуга/товар: {{ service.service_name }}</h2>
+<div class="card" style="width: 18rem;">
+    <img src="/media/{{ service.service_img }}" class="card-img-top" alt="Изображение">
+    <div class="card-body">
+        <a>Название: {{ service.service_name }}</a>
+        <p>Описание: {{ service.description_service }} </p>
+    </div>
+</div>
+<form method="post" action="{% url 'polls:order_service' service.id %}">
+    {% csrf_token %}
+    <input type="submit" value="Заказать услугу/товар">
+</form>
+{% endblock %}

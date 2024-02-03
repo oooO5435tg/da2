@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="form form-search" method="get" action="{% url 'polls:search' %}">
+    <input type="search" placeholder="Поиск" name="query">
+    <button type="submit">Поиск</button>
+</form>
+{% if results %}
+<div class="cards">
+    {% for service in results %}
+    <div class="card" style="width: 18rem;">
+        <img src="/media/{{ service.service_img }}" class="card-img-top" alt="Изображение">
+        <div class="card-body">
+          <a href="{% url 'polls:separate_service' service.id %}">Название: {{ service.service_name }}</a>
+          <p>Описание: {{ service.description_service }} </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    <h2 class="card-title">Нет таких товаров</h2>
+{% endif %}
+{% endblock %}

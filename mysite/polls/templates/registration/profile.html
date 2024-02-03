@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-block">
+  <img class="profile-avatar" src="/media/{{ user.avatar }}" alt="Аватар"/>
+  <h2 class="profile-username">{{ user.username }}</h2>
+</div>
+<h2 class="page-title">Заказанные услуги/товары</h2>
+<div class="cards">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+        {% if service_list %}
+            {% for service in service_list %}
+            <div class="card" style="width: 18rem;">
+                <img src="/media/{{ service.service.service_img }}" class="card-img-top" alt="Изображение">
+                <div class="card-body">
+                    <p>Название: {{ service.service.service_name }}</p>
+                    <p>Описание: {{ service.service.description_service }} </p>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+</div>
+{% endblock %}
